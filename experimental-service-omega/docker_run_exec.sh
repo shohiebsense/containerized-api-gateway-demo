@@ -1,0 +1,1 @@
+docker run -d --name experimental-service-omega --hostname experimental-service-omega --network experimental-service-network -p 9004:9004  experimental-service-omega

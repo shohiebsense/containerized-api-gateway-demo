@@ -1,0 +1,1 @@
+docker run -d --name krakend-gateway --hostname krakend-gateway --network experimental-service-network -p "8080:8080" krakend-gateway

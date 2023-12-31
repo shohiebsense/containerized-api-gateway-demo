@@ -1,0 +1,1 @@
+docker build -t experimental-service-alpha -f Dockerfile .

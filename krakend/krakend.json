@@ -1,0 +1,68 @@
+{
+  "$schema": "https://www.krakend.io/schema/v3.json",
+  "version": 3,
+  "name": "krakend-gateway",
+  "port": 8080,
+  "extra_config": {
+    "router": {
+      "return_error_msg": true
+    }
+  },
+  "endpoints": [
+    {
+      "endpoint": "/",
+      "backend": [
+        {
+          "url_pattern": "/",
+          "host": [
+            "experimental-service-alpha:9001"
+          ]
+        }
+      ]
+    },
+    {
+      "endpoint": "/connect-to-alpha",
+      "backend": [
+        {
+          "url_pattern": "/connect-to-alpha",
+          "host": [
+             "experimental-service-alpha:9001"
+          ]
+        }
+      ]
+    },
+    {
+      "endpoint": "/connect-to-beta",
+      "backend": [
+        {
+          "url_pattern": "/connect-to-beta",
+          "host": [
+            "experimental-service-beta:9002"
+          ]
+        }
+      ]
+    },
+    {
+      "endpoint": "/connect-to-delta",
+      "backend": [
+        {
+          "url_pattern": "/connect-to-delta",
+          "host": [
+            "experimental-service-delta:9003"
+          ]
+        }
+      ]
+    },
+    {
+      "endpoint": "/connect-to-omega",
+      "backend": [
+        {
+          "url_pattern": "/connect-to-omega",
+          "host": [
+            "experimental-service-omega:9004"
+          ]
+        }
+      ]
+    }
+  ]
+}
