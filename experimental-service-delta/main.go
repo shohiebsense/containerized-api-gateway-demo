@@ -18,10 +18,12 @@ func main() {
 	})
 
 	router.GET("/connect-to-delta", func(c *gin.Context) {
-		client := &http.Client{}
+		client := &http.Client{
+			Transport: &http.Transport{},
+		}
 
 		// URL to send the GET request to
-		url := "http://localhost:8080/connect-to-omega" // Replace "example.com" with your actual base URL
+		url := "http://experimental-service-omega:9004/connect-to-omega" // Replace "example.com" with your actual base URL
 
 		// Create a GET request
 		req, err := http.NewRequest("GET", url, nil)
@@ -29,6 +31,7 @@ func main() {
 			log.Fatal("Error creating request:", err)
 			return
 		}
+		req.Close = true
 
 		// Send the GET request
 		resp, err := client.Do(req)

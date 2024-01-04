@@ -18,8 +18,9 @@ func main() {
 	})
 
 	router.GET("/connect-to-beta", func(c *gin.Context) {
-		client := &http.Client{}
-
+		client := &http.Client{
+			Transport: &http.Transport{},
+		}
 		// URL to send the GET request to
 		url := "http://experimental-service-delta:9003/connect-to-delta" 
 
@@ -30,6 +31,7 @@ func main() {
 			log.Fatal("Error creating request:", err)
 			return
 		}
+		req.Close = true
 
 		// Send the GET request
 		resp, err := client.Do(req)

@@ -24,7 +24,9 @@ func main() {
 	})
 
 	router.GET("/connect-to-alpha", func(c *gin.Context) {
-		client := &http.Client{}
+		client := &http.Client{
+			Transport: &http.Transport{},
+		}
 
 		url := "http://experimental-service-beta:9002/connect-to-beta" 
 
@@ -33,6 +35,8 @@ func main() {
 			log.Fatal("Error creating request:", err)
 			return
 		}
+
+		req.Close = true
 
 		resp, err := client.Do(req)
 		if err != nil {
